@@ -167,47 +167,69 @@
 
 
         (function ($) {
-            $.fn.snow = function (options) {
-                var $flake = $('<div id="snowbox" />').css({ 'position': 'absolute', 'z-index': '9999', 'top': '-50px' }).html('&#10052;'),
-                    documentHeight = $(document).height(),
-                    documentWidth = $(document).width(),
-                    defaults = {
-                        minSize: 10,
-                        maxSize: 20,
-                        newOn: 1000,
-                        flakeColor: "#AFDAEF" /* 此处可以定义雪花颜色，若要白色可以改为#FFFFFF */
-                    },
-                    options = $.extend({}, defaults, options);
-                var interval = setInterval(function () {
-                    var startPositionLeft = Math.random() * documentWidth - 100,
-                        startOpacity = 0.5 + Math.random(),
-                        sizeFlake = options.minSize + Math.random() * options.maxSize,
-                        endPositionTop = documentHeight - 200,
-                        endPositionLeft = startPositionLeft - 500 + Math.random() * 500,
-                        durationFall = documentHeight * 10 + Math.random() * 5000;
-                    $flake.clone().appendTo('body').css({
-                        left: startPositionLeft,
-                        opacity: startOpacity,
-                        'font-size': sizeFlake,
-                        color: options.flakeColor
-                    }).animate({
-                        top: endPositionTop,
-                        left: endPositionLeft,
-                        opacity: 0.2
-                    }, durationFall, 'linear', function () {
-                        $(this).remove()
-                    });
-                }, options.newOn);
-            };
-        })(jQuery);
-        $(function () {
-            $.fn.snow({
-                minSize: 5, /* 定义雪花最小尺寸 */
-                maxSize: 50,/* 定义雪花最大尺寸 */
-                newOn: 800  /* 定义密集程度，数字越小越密集 */
-            });
-        });
+    // 定义一个 jQuery 插件，创建一个雪花效果
+    $.fn.snow = function (options) {
+        // 创建一个包含雪花的基本元素，并设置初始样式
+        var $flake = $('<div id="snowbox" />').css({
+            'position': 'absolute', // 使用绝对定位确保雪花可以自由移动
+            'z-index': '9999', // 确保雪花在页面的最上层显示
+            'top': '-50px' // 初始位置设置在视口的上方，以便从顶部开始下落
+        }).html('&#10052;'), // 使用 Unicode 字符表示雪花图标
+        documentHeight = $(document).height(), // 获取当前文档的总高度
+        documentWidth = $(document).width(), // 获取当前文档的总宽度
+        defaults = {
+            minSize: 10, // 雪花的最小尺寸（单位：像素）
+            maxSize: 20, // 雪花的最大尺寸（单位：像素）
+            newOn: 1000, // 每隔多少毫秒生成一片新的雪花
+            flakeColor: "#AFDAEF" // 雪花的颜色（使用十六进制颜色代码）
+        },
+        options = $.extend({}, defaults, options); // 将用户传递的选项与默认选项合并
 
+        // 创建雪花的函数
+        function createSnowflake() {
+            // 计算雪花的起始位置、透明度、尺寸和下落轨迹
+            var startPositionLeft = Math.random() * documentWidth - 100, // 随机生成雪花的初始水平位置
+                startOpacity = 0.5 + Math.random(), // 随机生成雪花的初始透明度（范围从0.5到1.5）
+                sizeFlake = options.minSize + Math.random() * options.maxSize, // 随机生成雪花的尺寸
+                endPositionTop = documentHeight - 200, // 雪花下落结束位置的垂直坐标
+                endPositionLeft = startPositionLeft - 500 + Math.random() * 500, // 雪花下落结束位置的水平坐标
+                durationFall = documentHeight * 10 + Math.random() * 5000; // 雪花下落的持续时间（随机生成）
+
+            // 克隆雪花元素，并将其添加到页面中
+            $flake.clone().appendTo('body').css({
+                left: startPositionLeft, // 设置雪花的初始水平位置
+                opacity: startOpacity, // 设置雪花的初始透明度
+                'font-size': sizeFlake, // 设置雪花的字体大小（即雪花的尺寸）
+                color: options.flakeColor // 设置雪花的颜色
+            }).animate({
+                top: endPositionTop, // 动画的目标垂直位置
+                left: endPositionLeft, // 动画的目标水平位置
+                opacity: 0.2 // 动画结束时雪花的透明度
+            }, durationFall, 'linear', function () {
+                // 动画完成后，移除雪花元素以避免 DOM 中积累过多的元素
+                $(this).remove();
+            });
+        }
+
+        // 递归调用创建雪花的函数，形成持续的雪花效果
+        function snowEffect() {
+            createSnowflake(); // 调用创建雪花的函数
+            setTimeout(snowEffect, options.newOn); // 在指定的时间间隔后再次调用 snowEffect 函数
+        }
+
+        // 启动雪花效果
+        snowEffect();
+    };
+})(jQuery);
+
+// 页面加载完成后，初始化雪花效果
+$(function () {
+    $.fn.snow({
+        minSize: 5, // 设置雪花的最小尺寸为5像素
+        maxSize: 50, // 设置雪花的最大尺寸为50像素
+        newOn: 800 // 设置每隔800毫秒生成一片新的雪花
+    });
+});
         // 浏览器搞笑标题
         var OriginTitle = document.title;
         var titleTime;
