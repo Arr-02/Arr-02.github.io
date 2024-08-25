@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-    <title>ARR.</title> <!-- 设置网页标题 -->
-    <meta name="description" content="学生、四斋、二刺猿"> <!-- 设置网页描述 -->
-    <meta name="keywords" content="Java,Spring,个人博客，微信小程序，博客"> <!-- 设置网页关键词 -->
-    <meta name="format-detection" content="telephone=no"> <!-- 禁止电话号码识别 -->
-    <link rel="shortcut icon" href="favicon.ico"> <!-- 设置网页图标 -->
-    <link rel="stylesheet" href="static/css/index.css"> <!-- 引入自定义样式表 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"> <!-- 引入Font Awesome图标库样式表 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.fancybox@2.1.5/source/jquery.fancybox.css"> <!-- 引入Fancybox样式表 -->
+    <title>ARR.</title>
+    <meta name="description" content="学生、四斋、二刺猿">
+    <meta name="keywords" content="Java,Spring,个人博客，微信小程序，博客">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="static/css/index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery.fancybox@2.1.5/source/jquery.fancybox.css">
     <script type="text/javascript">
-        if (!!window.ActiveXObject || "ActiveXObject" in window) { // 检测是否为IE浏览器
-            alert('朋友，上古浏览器不支持呢~'); // 如果是IE浏览器，弹出警告信息
+        if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+            alert('朋友，上古浏览器不支持呢~');
         }
     </script>
 </head>
@@ -23,14 +23,13 @@
 <body>
     <div id="body-wrap">
         <nav class="not_index_bg" id="nav" style="background-image:url(https://api.ixiaowai.cn/api/api.php)">
-            <!-- 导航栏 -->
             <div id="page_site-info">
                 <div id="site-title">
-                    <span class="blogtitle"></span> <!-- 动态显示的博客标题 -->
+                    <span class="blogtitle"></span>
                     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
                     <script>
                         var typed = new Typed(".blogtitle", {
-                               strings: ['纳西妲世界第一可爱'], // 使用Typed.js插件显示的动态文字
+                               strings: ['纳西妲世界第一可爱'],
                             startDelay: 300,
                             typeSpeed: 100,
                             loop: true,
@@ -44,55 +43,51 @@
         <main id="content-outer">
             <div class="layout_page" id="content-inner">
                 <div class="aside_content" id="aside_content">
-                    <!-- 侧边栏内容 -->
                     <div class="card-widget card-info">
-                        <!-- 卡片部件：个人信息 -->
                         <div class="card-content">
                             <div class="card-info-avatar is-center">
                                 <img class="avatar-img"
                                     src="https://raw.githubusercontent.com/Arr-02/-/main/%E8%8D%89%E7%A5%9E%E7%BA%B3%E8%A5%BF%E5%A6%B2%E5%8E%9F%E7%A5%9E117.JPG"
-                                    alt="avatar"> <!-- 个人头像 -->
-                                <div class="author-info__name">ARR.</div> <!-- 作者名字 -->
-                                <div class="author-info__description">学生、四斋、二刺猿 </div> <!-- 作者描述 -->
+                                    alt="avatar">
+                                <div class="author-info__name">ARR.</div>
+                                <div class="author-info__description">学生、四斋、二刺猿 </div>
                             </div>
+                           
                         </div>
                     </div>
 
                     <div class="card-widget card-announcement">
-                        <!-- 卡片部件：公告 -->
                         <div class="card-content">
                             <div class="item-headline">
-                                <i class="fa fa-bullhorn" aria-hidden="true"></i> <!-- 使用Font Awesome图标 -->
-                                <span>一言</span> <!-- 标题 -->
+                                <i class="fa fa-bullhorn" aria-hidden="true"></i>
+                                <span>一言</span>
                             </div>
-                            <div id="hitokoto"></div> <!-- 一言内容 -->
+                            <div id="hitokoto"></div>
                         </div>
                     </div>
                     <div class="card-widget card-announcement">
-                        <!-- 卡片部件：今日诗词 -->
                         <div class="card-content">
                             <div class="item-headline">
-                                <i class="fa fa-calendar" aria-hidden="true"></i> <!-- 使用Font Awesome图标 -->
-                                <span>今日诗词</span> <!-- 标题 -->
+                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <span>今日诗词</span>
                             </div>
-                            <div id="jinrishici-sentence"></div> <!-- 今日诗词内容 -->
+                            <div id="jinrishici-sentence"></div>
                         </div>
                     </div>
 
                     <div class="card-widget card-webinfo">
-                        <!-- 卡片部件：站点信息 -->
                         <div class="card-content">
                             <div class="item-headline">
-                                <i class="fa fa-line-chart" aria-hidden="true"></i> <!-- 使用Font Awesome图标 -->
-                                <span>站点信息</span> <!-- 标题 -->
+                                <i class="fa fa-line-chart" aria-hidden="true"></i>
+                                <span>站点信息</span>
                             </div>
                             <div class="webinfo">
                                 <div class="webinfo-item">
-                                    <div class="webinfo-site-uv-name">小窝访客数 :</div> <!-- 访客数 -->
+                                    <div class="webinfo-site-uv-name">小窝访客数 :</div>
                                     <div class="webinfo-site-uv-count" id="busuanzi_value_site_uv"></div>
                                 </div>
                                 <div class="webinfo-item">
-                                    <div class="webinfo-site-name">小窝总访问量 :</div> <!-- 总访问量 -->
+                                    <div class="webinfo-site-name">小窝总访问量 :</div>
                                     <div class="webinfo-site-pv-count" id="busuanzi_value_site_pv"></div>
                                 </div>
                             </div>
@@ -100,33 +95,32 @@
                     </div>
                 </div>
                 <article id="page">
-                    <!-- 文章内容 -->
                     <div class="article-container">
+                        
                         <h2>音乐</h2>
                         <meting-js auto="https://music.163.com/#/playlist?id=12511897212">
-                        </meting-js> <!-- 显示音乐播放器 -->
+                        </meting-js>
 
                         <hr>
                         <h2>摸鱼</h2>
                         <div class="tool">
                             <a href="https://www.bilibili.com/">B站</a><br>
-                            <a href="https://www.douyin.com/">抖音</a> <!-- 显示链接列表 -->
+                            <a href="https://www.douyin.com/">抖音</a>
                         </div>
 
                         <hr>
                         <h2>收藏</h2>
                         <div class="tool">
                             <a href="https://github.com/">github</a><br>
-                            <a href="https://www.pixiv.net/">P站</a> <!-- 显示链接列表 -->
+                            <a href="https://www.pixiv.net/">P站</a>
                         </div>
-
-                        <!--
-                        <hr>
+                        
+                         <hr>
+                       <!-- 
                         <h2>最爱</h2>
                         <div class="tool">
                            <img src="https://raw.githubusercontent.com/Arr-02/to.pian.ku/main/02.jpg?token=GHSAT0AAAAAACWPNMV2MRSEOMSLNYAC7YMOZWKA63A" alt="示例图片" title="看什么看，这是我宝！">
-                           <!-- 图片示例 -->
-                        <!--
+                           
                         </div>
                         -->
                     </div>
@@ -134,23 +128,126 @@
             </div>
         </main>
         <footer id="footer">
-            <!-- 页脚 -->
             <div id="footer-wrap">
-                <div class="copyright">&copy;ARR.</div> <!-- 版权声明 -->
+                <div class="copyright">&copy;ARR.</div>
             </div>
         </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script> <!-- 引入jQuery -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery.fancybox@2.1.5/source/jquery.fancybox.js"></script> <!-- 引入Fancybox插件 -->
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script> <!-- 引入不蒜子统计 -->
-    <script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.js" type="module"></script> <!-- 引入instant.page -->
-    <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" async></script> <!-- 引入lazysizes -->
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.fancybox@2.1.5/source/jquery.fancybox.js"></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/instant.page@3.0.0/instantpage.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.0/lazysizes.min.js" async></script>
     <!-- aplayer、meting -->
     <!-- require APlayer -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"> <!-- 引入APlayer样式 -->
-    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script> <!-- 引入APlayer脚本 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     <!-- require MetingJS -->
-    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script> <!-- 引入MetingJS脚本 -->
+    <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
 
-    <!-- nplayer
+    <!-- nplayer -->
+    <script src="https://unpkg.com/nplayer@latest/dist/index.min.js"></script>
+
+    <!--   一言、今日诗词   -->
+    <script src="https://v1.hitokoto.cn/?encode=js&select=%23hitokoto" defer></script>
+    <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+
+    <!-- 看板娘 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
+
+    <!--鼠标点击效果-->
+    <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.0.8/js/maodian.js"></script>
+
+    <script type="text/javascript">
+        console.clear();
+        console.log("%c 有朋自远方来, 不亦说乎.", "background:#24272A; color:#ffffff", "");
+        console.log("%c Github %c", "background:#24272A; color:#ffffff", "", "https://github.com/laoxuai");
+        console.log("%c 版本号: %c", "background:#24272A; color:#ffffff", "", "1.0.0");
+
+
+        (function ($) {
+    // 定义一个 jQuery 插件，创建一个雪花效果
+    $.fn.snow = function (options) {
+        // 创建一个包含雪花的基本元素，并设置初始样式
+        var $flake = $('<div id="snowbox" />').css({
+            'position': 'absolute', // 使用绝对定位确保雪花可以自由移动
+            'z-index': '9999', // 确保雪花在页面的最上层显示
+            'top': '-50px' // 初始位置设置在视口的上方，以便从顶部开始下落
+        }).html('&#10052;'), // 使用 Unicode 字符表示雪花图标
+        documentHeight = $(document).height(), // 获取当前文档的总高度
+        documentWidth = $(document).width(), // 获取当前文档的总宽度
+        defaults = {
+            minSize: 10, // 雪花的最小尺寸（单位：像素）
+            maxSize: 20, // 雪花的最大尺寸（单位：像素）
+            newOn: 1000, // 每隔多少毫秒生成一片新的雪花
+            flakeColor: "#AFDAEF" // 雪花的颜色（使用十六进制颜色代码）
+        },
+        options = $.extend({}, defaults, options); // 将用户传递的选项与默认选项合并
+
+        // 创建雪花的函数
+        function createSnowflake() {
+            // 计算雪花的起始位置、透明度、尺寸和下落轨迹
+            var startPositionLeft = Math.random() * documentWidth - 100, // 随机生成雪花的初始水平位置
+                startOpacity = 0.5 + Math.random(), // 随机生成雪花的初始透明度（范围从0.5到1.5）
+                sizeFlake = options.minSize + Math.random() * options.maxSize, // 随机生成雪花的尺寸
+                endPositionTop = documentHeight - 200, // 雪花下落结束位置的垂直坐标
+                endPositionLeft = startPositionLeft - 500 + Math.random() * 500, // 雪花下落结束位置的水平坐标
+                durationFall = documentHeight * 10 + Math.random() * 5000; // 雪花下落的持续时间（随机生成）
+
+            // 克隆雪花元素，并将其添加到页面中
+            $flake.clone().appendTo('body').css({
+                left: startPositionLeft, // 设置雪花的初始水平位置
+                opacity: startOpacity, // 设置雪花的初始透明度
+                'font-size': sizeFlake, // 设置雪花的字体大小（即雪花的尺寸）
+                color: options.flakeColor // 设置雪花的颜色
+            }).animate({
+                top: endPositionTop, // 动画的目标垂直位置
+                left: endPositionLeft, // 动画的目标水平位置
+                opacity: 0.2 // 动画结束时雪花的透明度
+            }, durationFall, 'linear', function () {
+                // 动画完成后，移除雪花元素以避免 DOM 中积累过多的元素
+                $(this).remove();
+            });
+        }
+
+        // 递归调用创建雪花的函数，形成持续的雪花效果
+        function snowEffect() {
+            createSnowflake(); // 调用创建雪花的函数
+            setTimeout(snowEffect, options.newOn); // 在指定的时间间隔后再次调用 snowEffect 函数
+        }
+
+        // 启动雪花效果
+        snowEffect();
+    };
+})(jQuery);
+
+// 页面加载完成后，初始化雪花效果
+$(function () {
+    $.fn.snow({
+        minSize: 5, // 设置雪花的最小尺寸为5像素
+        maxSize: 50, // 设置雪花的最大尺寸为50像素
+        newOn: 800 // 设置每隔800毫秒生成一片新的雪花
+    });
+});
+        // 浏览器搞笑标题
+        var OriginTitle = document.title;
+        var titleTime;
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden) {
+                // $('[rel="icon"]').attr('href', "/funny.ico");
+                document.title = '╭(°A°`)╮ 页面崩溃啦 ~';
+                clearTimeout(titleTime);
+            }
+            else {
+                $('[rel="icon"]').attr('href', "/favicon.ico");
+                document.title = '(ฅ>ω<*ฅ) 噫又好啦 ~' + OriginTitle;
+                titleTime = setTimeout(function () {
+                    document.title = OriginTitle;
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+
+</html>
