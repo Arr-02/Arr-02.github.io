@@ -47,9 +47,9 @@
     fetch('https://api.boxmoe.com/random.php?return=json')
         .then(response => response.json())
         .then(data => {
-            var imageUrl = data.imageUrl; 
-            var nav = document.getElementById('nav');
-            nav.style.backgroundImage = 'url(' + imageUrl + ')';
+            var imageUrl = data.imgurl; 
+            var nav = document.getElementById('nav'); 
+            nav.style.backgroundImage = 'url(' + imageUrl + ')'; 
         })
         .catch(error => {
             console.error('Error fetching data:', error);
