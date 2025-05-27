@@ -26,7 +26,7 @@ export default defineConfig({
     name: 'Arr-02',
     cover: '/60651947_p0.jpg',
     hello: '你好，我是 Arr-02',
-    motto: '欢迎来到我的博客',
+    motto: '欢迎来到我的世界',
     social: [
       { icon: 'fa-github', url: 'https://github.com/Arr-02' },
     ],
