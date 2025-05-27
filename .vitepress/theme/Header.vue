@@ -29,8 +29,7 @@ const base = useData().site.value.base
 interface MenuItem { icon: string, name: string, url: string }
 const menu: MenuItem[] = [
   { icon: 'fa-home', name: '首页', url: '' },
-  { icon: 'fa-tag', name: '标签', url: 'tags/' },
-  { icon: 'fa-leaf', name: '关于', url: 'readme.html' }
+  { icon: 'fa-tag', name: '标签', url: 'tags/' }
 ]
 </script>
 
