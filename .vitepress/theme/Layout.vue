@@ -9,7 +9,7 @@
     </template>
     <Tag v-else-if="path === 'tags/'" />
     <Article v-else />
-    <div id="waline" class="waline-container"></div>
+    <div v-if="path !== '' && path !== 'tags/'" id="waline" class="waline-container"></div>
   </main>
 </template>
 
@@ -29,35 +29,56 @@ const route = useRoute()
 const path = computed(() => route.path.replace(base, '').replace('index.html', ''))
 
 const { isDark, theme } = useData()
-const walineInstance = ref(null)
+const walineInstance = ref<any>(null)
 
 // 初始化 Waline
 const initWaline = () => {
-  if (walineInstance.value) {
-    walineInstance.value.destroy?.()
+  // 确保 Waline 脚本已加载
+  if (typeof window === 'undefined' || !window.Waline) {
+    console.warn('Waline script not loaded yet')
+    return
   }
 
-  // @ts-ignore
-  const waline = window.Waline.init({
-    el: '#waline',
-    ...theme.value.waline,
-    path: route.path
-  })
+  // 销毁旧实例
+  if (walineInstance.value?.destroy) {
+    walineInstance.value.destroy()
+  }
 
-  walineInstance.value = waline
+  try {
+    // @ts-ignore
+    const waline = window.Waline.init({
+      el: '#waline',
+      serverURL: theme.value.waline.serverURL,
+      pageview: true,
+      comment: true,
+      locale: {
+        placeholder: '说点什么吧...'
+      },
+      dark: 'auto',
+      emoji: [
+        '//unpkg.com/@waline/emojis@1.1.0/weibo',
+        '//unpkg.com/@waline/emojis@1.1.0/bilibili'
+      ],
+      path: route.path
+    })
+
+    walineInstance.value = waline
+  } catch (e) {
+    console.error('Failed to initialize Waline:', e)
+  }
 }
 
 // 监听路由变化
 watch(() => route.path, () => {
-  if (walineInstance.value) {
-    walineInstance.value.update?.()
+  if (walineInstance.value?.update) {
+    walineInstance.value.update()
   }
 })
 
 // 组件挂载时初始化
 onMounted(() => {
   // 等待 Waline 脚本加载完成
-  if (typeof window !== 'undefined' && window.Waline) {
+  if (document.readyState === 'complete') {
     initWaline()
   } else {
     window.addEventListener('load', initWaline)
