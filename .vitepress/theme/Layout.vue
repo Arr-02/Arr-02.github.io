@@ -33,12 +33,6 @@ const walineInstance = ref<any>(null)
 
 // 初始化 Waline
 const initWaline = () => {
-  // 确保 Waline 脚本已加载
-  if (typeof window === 'undefined' || !window.walineLoaded) {
-    setTimeout(initWaline, 100) // 如果还没加载完成，100ms 后重试
-    return
-  }
-
   // 销毁旧实例
   if (walineInstance.value?.destroy) {
     walineInstance.value.destroy()
@@ -46,7 +40,7 @@ const initWaline = () => {
 
   try {
     // @ts-ignore
-    const waline = window.Waline.init({
+    const waline = window.Waline({
       el: '#waline',
       serverURL: 'https://waline-server-pi-five.vercel.app',
       pageview: true,
@@ -92,10 +86,7 @@ onMounted(() => {
 // 声明全局类型
 declare global {
   interface Window {
-    walineLoaded?: boolean
-    Waline: {
-      init: (options: any) => any
-    }
+    Waline: (options: any) => any
   }
 }
 </script>
