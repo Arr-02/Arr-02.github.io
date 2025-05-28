@@ -9,6 +9,7 @@
     </template>
     <Tag v-else-if="path === 'tags/'" />
     <Article v-else />
+    <div id="waline" class="waline-container"></div>
   </main>
 </template>
 
@@ -19,13 +20,49 @@ import Article from './Article.vue'
 import BlogList from './BlogList.vue'
 import Tag from './Tag.vue'
 import ToTop from './ToTop.vue'
-import { computed } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
 import { useRoute, useData } from 'vitepress'
 import { data as posts } from '../posts.data'
+
 const base = useData().site.value.base
 const route = useRoute()
 const path = computed(() => route.path.replace(base, '').replace('index.html', ''))
 
+const { isDark, theme } = useData()
+const walineInstance = ref(null)
+
+// 初始化 Waline
+const initWaline = () => {
+  if (walineInstance.value) {
+    walineInstance.value.destroy?.()
+  }
+
+  // @ts-ignore
+  const waline = window.Waline.init({
+    el: '#waline',
+    ...theme.value.waline,
+    path: route.path
+  })
+
+  walineInstance.value = waline
+}
+
+// 监听路由变化
+watch(() => route.path, () => {
+  if (walineInstance.value) {
+    walineInstance.value.update?.()
+  }
+})
+
+// 组件挂载时初始化
+onMounted(() => {
+  // 等待 Waline 脚本加载完成
+  if (typeof window !== 'undefined' && window.Waline) {
+    initWaline()
+  } else {
+    window.addEventListener('load', initWaline)
+  }
+})
 </script>
 
 <style lang="scss">
@@ -75,5 +112,11 @@ hr {
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background: var(--color-accent);
+}
+
+.waline-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 </style>

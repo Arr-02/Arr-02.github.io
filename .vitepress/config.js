@@ -8,6 +8,9 @@ export default defineConfig({
     ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/regular.min.css' }],
     ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css' }],
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Serif+SC' }],
+    // Waline
+    ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.css' }],
+    ['script', { src: 'https://cdn.jsdelivr.net/npm/@waline/client@v3/dist/waline.js' }],
     // giscus
     ['script', { src: 'https://giscus.app/client.js', 'data-repo': 'Arr-02/Arr-02.github.io', 'data-repo-id': '你的仓库ID', 'data-category': 'Announcements', 'data-category-id': '你的分类ID', 'data-mapping': 'pathname', 'data-strict': '0', 'data-reactions-enabled': '1', 'data-emit-metadata': '0', 'data-input-position': 'bottom', 'data-theme': 'light', 'data-lang': 'zh-CN', crossorigin: 'anonymous', async: '' }],
     // katex
