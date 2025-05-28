@@ -36,7 +36,7 @@ export default defineConfig({
     ],
     // Waline 评论系统配置
     waline: {
-      serverURL: 'https://waline-server-pi-five.vercel.app', // 你的 Waline 服务端地址
+      serverURL: 'https://ping-lun-omega.vercel.app', // 更新为新的服务端地址
       pageview: true, // 开启文章阅读量统计
       comment: true,  // 开启评论功能
       locale: {

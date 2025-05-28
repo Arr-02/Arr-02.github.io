@@ -48,7 +48,7 @@ const initWaline = () => {
     // @ts-ignore
     const waline = window.Waline.init({
       el: '#waline',
-      serverURL: 'https://waline-server-pi-five.vercel.app',
+      serverURL: 'https://ping-lun-omega.vercel.app',
       pageview: true,
       comment: true,
       locale: {
