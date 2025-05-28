@@ -9,8 +9,11 @@ export default defineConfig({
     ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css' }],
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Serif+SC' }],
     // Waline
-    ['link', { rel: 'stylesheet', href: 'https://unpkg.com/@waline/client@v2/dist/waline.css' }],
-    ['script', { src: 'https://unpkg.com/@waline/client@v2/dist/waline.js' }],
+    ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css' }],
+    ['script', { 
+      src: 'https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js',
+      onload: 'window.walineLoaded = true'
+    }],
     // katex
     ['script', { src: 'https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js' }],
     ['script', { src: 'https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js' }],

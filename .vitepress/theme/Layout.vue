@@ -34,7 +34,7 @@ const walineInstance = ref<any>(null)
 // 初始化 Waline
 const initWaline = () => {
   // 确保 Waline 脚本已加载
-  if (typeof window === 'undefined' || !window.Waline) {
+  if (typeof window === 'undefined' || !window.walineLoaded) {
     setTimeout(initWaline, 100) // 如果还没加载完成，100ms 后重试
     return
   }
@@ -46,7 +46,7 @@ const initWaline = () => {
 
   try {
     // @ts-ignore
-    const waline = window.Waline.init({
+    const waline = new window.Waline({
       el: '#waline',
       serverURL: 'https://waline-server-pi-five.vercel.app',
       pageview: true,
@@ -59,7 +59,11 @@ const initWaline = () => {
         '//unpkg.com/@waline/emojis@1.1.0/weibo',
         '//unpkg.com/@waline/emojis@1.1.0/bilibili'
       ],
-      path: route.path
+      path: route.path,
+      // 添加错误处理
+      errorHandler: (err: any) => {
+        console.error('Waline error:', err)
+      }
     })
 
     walineInstance.value = waline
@@ -84,6 +88,14 @@ onMounted(() => {
     window.addEventListener('load', initWaline)
   }
 })
+
+// 声明全局类型
+declare global {
+  interface Window {
+    walineLoaded?: boolean
+    Waline: any
+  }
+}
 </script>
 
 <style lang="scss">
@@ -143,5 +155,10 @@ hr {
   background: var(--color-background);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.waline-container:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 </style>
