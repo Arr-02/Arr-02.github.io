@@ -35,7 +35,7 @@ const walineInstance = ref<any>(null)
 const initWaline = () => {
   // 确保 Waline 脚本已加载
   if (typeof window === 'undefined' || !window.Waline) {
-    console.warn('Waline script not loaded yet')
+    setTimeout(initWaline, 100) // 如果还没加载完成，100ms 后重试
     return
   }
 
@@ -48,7 +48,7 @@ const initWaline = () => {
     // @ts-ignore
     const waline = window.Waline.init({
       el: '#waline',
-      serverURL: theme.value.waline.serverURL,
+      serverURL: 'https://waline-server-pi-five.vercel.app',
       pageview: true,
       comment: true,
       locale: {
@@ -77,7 +77,7 @@ watch(() => route.path, () => {
 
 // 组件挂载时初始化
 onMounted(() => {
-  // 等待 Waline 脚本加载完成
+  // 等待页面完全加载
   if (document.readyState === 'complete') {
     initWaline()
   } else {
@@ -139,5 +139,9 @@ hr {
   max-width: 800px;
   margin: 2rem auto;
   padding: 0 1rem;
+  min-height: 200px;
+  background: var(--color-background);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 </style>
