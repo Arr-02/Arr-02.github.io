@@ -11,7 +11,7 @@ export default defineConfig({
     // Waline
     ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css' }],
     ['script', { 
-      src: 'https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.js',
+      src: 'https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.umd.js',
       onload: 'window.walineLoaded = true'
     }],
     // katex

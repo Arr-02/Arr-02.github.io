@@ -46,7 +46,7 @@ const initWaline = () => {
 
   try {
     // @ts-ignore
-    const waline = new window.Waline({
+    const waline = window.Waline.init({
       el: '#waline',
       serverURL: 'https://waline-server-pi-five.vercel.app',
       pageview: true,
@@ -93,7 +93,9 @@ onMounted(() => {
 declare global {
   interface Window {
     walineLoaded?: boolean
-    Waline: any
+    Waline: {
+      init: (options: any) => any
+    }
   }
 }
 </script>
