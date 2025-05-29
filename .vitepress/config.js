@@ -8,12 +8,6 @@ export default defineConfig({
     ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/regular.min.css' }],
     ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css' }],
     ['link', { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Noto+Serif+SC' }],
-    // Waline
-    ['link', { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.css' }],
-    ['script', { 
-      src: 'https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.umd.js',
-      onload: 'window.walineLoaded = true'
-    }],
     // katex
     ['script', { src: 'https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js' }],
     ['script', { src: 'https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js' }],
@@ -33,20 +27,6 @@ export default defineConfig({
     motto: '欢迎来到我的世界！！！',
     social: [
       { icon: 'fa-github', url: 'https://github.com/Arr-02' },
-    ],
-    // Waline 评论系统配置
-    waline: {
-      serverURL: 'https://ping-lun-omega.vercel.app', // 更新为新的服务端地址
-      pageview: true, // 开启文章阅读量统计
-      comment: true,  // 开启评论功能
-      locale: {
-        placeholder: '说点什么吧...' // 评论框占位符
-      },
-      dark: 'auto', // 自动适应暗色模式
-      emoji: [
-        '//unpkg.com/@waline/emojis@1.1.0/weibo',
-        '//unpkg.com/@waline/emojis@1.1.0/bilibili'
-      ] // 添加表情包支持
-    }
+    ]
   }
 }) 

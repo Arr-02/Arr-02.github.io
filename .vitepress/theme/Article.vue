@@ -2,7 +2,7 @@
   <div class="abanner" :style="cover" v-if="index >= 0">
     <div class="titlebox">
       <h1 class="title">{{ title }}</h1>
-      <div class="info">{{ author }} · 更新于 {{ date }} · {{ view }} 次阅读</div>
+      <div class="info">{{ author }} · 更新于 {{ date }}</div>
     </div>
   </div>
   <div class="article">
@@ -21,7 +21,6 @@
         </a>
       </span>
     </div>
-    <Waline v-if="index != -1" ref="waline" />
     <TOC :data="data.page.value.headers" :active="active" />
   </div>
 </template>
@@ -36,7 +35,6 @@ import { useData, useRoute } from 'vitepress'
 import { onMounted, onUnmounted, ref, reactive, watch, nextTick } from 'vue'
 import { data as posts } from '../posts.data'
 import { throttleAndDebounce } from './utils'
-import Waline from './Waline.vue'
 import TOC from './TOC.vue'
 
 const data = useData()
@@ -45,10 +43,8 @@ const route = useRoute()
 const title = ref('')
 const author = data.theme.value.name
 const date = ref('')
-const view = ref(0)
 const cover = ref('')
 const active = ref(0)
-const waline = ref<InstanceType<typeof Waline>>()
 const nav = reactive([
   { href: '', text: '', show: true },
   { href: '', text: '', show: true },
@@ -61,7 +57,6 @@ const update = () => {
   title.value = data.page.value.title
   cover.value = `background-image: url(${data.page.value.frontmatter.cover || data.theme.value.cover})`
   date.value = new Date(data.page.value.lastUpdated || posts[index.value].create).toLocaleDateString('sv-SE')
-  waline.value?.update()
   let ival = index.value
   if (ival - 1 >= 0) {
     nav[0].href = base + posts[ival - 1].href
@@ -118,47 +113,53 @@ const updateKatex = () => {
     ],
   })
 }
-onMounted(() => {
-  setActiveLink()
-  window.addEventListener('scroll', onScroll)
-  if (import.meta.env.DEV) {
-    let el = document.querySelector<HTMLScriptElement>('script[src*="auto-render"]')
-    if (el) el.onload = () => updateKatex()
-  }
-})
-onUnmounted(() => {
-  window.removeEventListener('scroll', onScroll)
-})
-
 </script>
 
 <style lang="scss">
 .abanner {
   height: 400px;
   width: 100%;
-  background-size: cover;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
   background-position: center center;
   margin-top: 64px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  .titlebox {
+  &::before {
+    content: '';
     position: absolute;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
+    top: 0;
     left: 0;
     right: 0;
-    bottom: 20px;
-    text-shadow: 2px 2px 10px black;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+  }
+
+  .titlebox {
+    position: relative;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
     color: white;
+    z-index: 1;
+    text-align: center;
   }
 
   .title {
     font-size: 32px;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.4;
   }
 
   .info {
     font-size: 14px;
+    opacity: 0.9;
   }
 }
 
@@ -244,10 +245,40 @@ onUnmounted(() => {
 
 @media (max-width: 800px) {
   .abanner {
+    height: 300px;
+    margin-top: 56px;
+
+    .titlebox {
+      padding: 1.5rem;
+      transform: scale(0.9);
+    }
+
+    .title {
+      font-size: 24px;
+    }
+
+    .info {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .abanner {
     height: 200px;
 
     .titlebox {
-      margin-left: 0.5em;
+      padding: 1rem;
+      transform: scale(0.8);
+    }
+
+    .title {
+      font-size: 20px;
+      margin-bottom: 0.3rem;
+    }
+
+    .info {
+      font-size: 12px;
     }
   }
 }
