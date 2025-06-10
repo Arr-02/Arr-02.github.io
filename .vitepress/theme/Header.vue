@@ -15,11 +15,6 @@
         </ul>
       </span>
     </span>
-    <span class="other">
-      <a class="search">
-        <i class="fa fa-search"></i>
-      </a>
-    </span>
   </header>
 </template>
 
@@ -29,7 +24,9 @@ const base = useData().site.value.base
 interface MenuItem { icon: string, name: string, url: string }
 const menu: MenuItem[] = [
   { icon: 'fa-home', name: '首页', url: '' },
-  { icon: 'fa-tag', name: '标签', url: 'tags/' }
+  { icon: 'fa-image', name: '图片', url: 'gallery/' },
+  { icon: 'fa-tag', name: '标签', url: 'tags/' },
+  { icon: 'fa-smile', name: '变脸器', url: 'faceslider/' }
 ]
 </script>
 
@@ -54,11 +51,6 @@ header {
     position: absolute;
     left: 50%;
     translate: -50%;
-  }
-
-  .other {
-    justify-self: right;
-    padding-right: 8px;
   }
 
   .menu {
