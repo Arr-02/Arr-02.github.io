@@ -2,12 +2,10 @@ const container = document.querySelector('.container')
 const face = document.querySelector('.face-slider')
 const btnHappy = document.querySelector('.button-happy')
 const btnUnhappy = document.querySelector('.button-unhappy')
-const title = document.querySelector('.title')
-const subtitle = document.querySelector('.subtitle')
 
 const config = {
-    // 这里修改卸载点击的最大次数,如果为0或1就是不会乱跑
-    maxUnhappyCount: 2,
+    // 设置为无限大，让卸载按钮永远无法真正卸载
+    maxUnhappyCount: 999999,
     // 这里修改动画速度
     animationSpeed: 0.1,
     // 这里修改文字，正常状态下在html文件里面修改
@@ -16,27 +14,21 @@ const config = {
             face: { happiness: 0.9, derp: 1, px: 0.5, py: 0.5 },
             ui: {
                 btnHappyText: btnHappy.innerHTML,
-                btnUnhappyText: btnUnhappy.innerHTML,
-                titleText: title.innerHTML,
-                subtitleText: subtitle.innerHTML
+                btnUnhappyText: btnUnhappy.innerHTML
             }
         },
         happy: {
             face: { happiness: 1, derp: 0, px: 0.5, py: 0.5 },
             ui: {
                 btnHappyText: '返回',
-                btnUnhappyText: '返回',
-                titleText: '已取消',
-                subtitleText: '感谢您继续使用本插件'
+                btnUnhappyText: '返回'
             }
         },
         unhappy: {
             face: { happiness: 0.2, derp: 0, px: 0.5, py: 0.5 },
             ui: {
                 btnHappyText: '返回',
-                btnUnhappyText: '返回',
-                titleText: '已删除',
-                subtitleText: '感谢您使用本插件'
+                btnUnhappyText: '返回'
             }
         }
     }
@@ -60,8 +52,6 @@ function transitionToState(stateType, hideButton = null) {
     Object.assign(state.current, targetState.face)
     btnHappy.innerHTML = targetState.ui.btnUnhappyText
     btnUnhappy.innerHTML = targetState.ui.btnUnhappyText
-    title.innerHTML = targetState.ui.titleText
-    subtitle.innerHTML = targetState.ui.subtitleText
     if (hideButton) {
         hideButton.style.visibility = 'hidden'
         btnUnhappy.style.position = 'static'
